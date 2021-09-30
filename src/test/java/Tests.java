@@ -1,4 +1,6 @@
 import API.SetRespons;
+
+import Models.Constants;
 import Steps.Stepsssss;
 import com.codeborne.selenide.testng.ScreenShooter;
 import io.qameta.allure.*;
@@ -14,6 +16,7 @@ import org.testng.annotations.Test;
 public class Tests {
     SetRespons Respons = new SetRespons();
     Stepsssss step = new Stepsssss();
+    Constants constants=new Constants();
 
 
     @BeforeClass
@@ -26,12 +29,14 @@ public class Tests {
     @Description(" წარმატებული ტესტი ")
     @Severity(SeverityLevel.BLOCKER)
     @Link("https://classroom.google.com/c/MzUzMjE2MTQ5MDMw/a/NDAyODg5MDMxNTA4/details")
+
+
     public void succsessful() {
         Response response = Respons.responsWithSuccsesParams();
 
         Assert.assertEquals(200, response.statusCode());
-        Assert.assertEquals("4", step.deserialisationWithSuccsesParam().id);
-        Assert.assertEquals("QpwL5tke4Pnpja7X4", step.deserialisationWithSuccsesParam().token);
+        Assert.assertEquals(constants.getSuccsesID(), step.deserialisationWithSuccsesParam().id);
+        Assert.assertEquals(constants.getSuccsesToken(), step.deserialisationWithSuccsesParam().token);
 
         System.out.println(step.deserialisationWithSuccsesParam().id);
         System.out.println(step.deserialisationWithSuccsesParam().token);
@@ -45,7 +50,7 @@ public class Tests {
         Response response = Respons.responsWithBadParams();
 
         Assert.assertEquals(400, response.statusCode());
-        Assert.assertEquals("Missing password", step.deserialisationWithBadParam().error);
+        Assert.assertEquals(constants.getBadErrorMessage(), step.deserialisationWithBadParam().error);
 
         System.out.println(step.deserialisationWithBadParam().error);
     }
@@ -61,8 +66,8 @@ public class Tests {
         Assert.assertEquals(201, response.statusCode());
         Assert.assertNotNull(step.deserialisationWithSeveralParams().createdAt);
         Assert.assertNotNull(step.deserialisationWithSeveralParams().id);
-        Assert.assertEquals("leader", step.deserialisationWithSeveralParams().job);
-        Assert.assertEquals("morpheus", step.deserialisationWithSeveralParams().name);
+        Assert.assertEquals(constants.getJob(), step.deserialisationWithSeveralParams().job);
+        Assert.assertEquals(constants.getName(), step.deserialisationWithSeveralParams().name);
 
         System.out.println("result:  " + step.deserialisationWithSeveralParams().createdAt);
         System.out.println("result:  " + step.deserialisationWithSeveralParams().id);

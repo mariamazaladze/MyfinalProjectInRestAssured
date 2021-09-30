@@ -11,6 +11,7 @@ public class SetRespons {
 
     @Step("respons With Succses Params")
     public Response responsWithSuccsesParams() {
+
         Response response = given().
                 header("Content-Type", "application/json").
                 body(request.requestWithSuccsesParams()).

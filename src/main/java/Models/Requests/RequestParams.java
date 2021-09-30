@@ -2,8 +2,7 @@ package Models.Requests;
 
 public class RequestParams {
 
-    private String
-            emailvalue = "eve.holt@reqres.in";
+    private String emailvalue = "eve.holt@reqres.in";
     private String emailvaluebad = "sydey@fife";
     private String email = "email";
     private String password = "password";
